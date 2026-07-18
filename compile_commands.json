@@ -1,0 +1,19 @@
+[
+  {
+    "directory": "D:\\PROJECTS\\CPP\\culcan",
+    "arguments": [
+      "D:\\msys64\\ucrt64\\bin\\g++.exe",
+      "-c",
+      "-m64",
+      "-fvisibility=hidden",
+      "-fvisibility-inlines-hidden",
+      "-O3",
+      "-std=c++20",
+      "-DNDEBUG",
+      "-o",
+      "build\\.objs\\Culcan\\msys\\x86_64\\release\\src\\main.cpp.o",
+      "src\\main.cpp"
+    ],
+    "file": "src\\main.cpp"
+  }
+]

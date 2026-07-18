@@ -1,0 +1,14 @@
+{
+    errdata = "In file included from \27[01m\27[Ksrc\\main.cpp:1\27[m\27[K:\
+\27[01m\27[Ksrc\\cukan_main.hpp:\27[m\27[K In member function '\27[01m\27[Kvoid CukanVM::\27[01;32m\27[Kexecute\27[m\27[K()\27[m\27[K':\
+\27[01m\27[Ksrc\\cukan_main.hpp:110:21:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kignoring return value of '\27[01m\27[Kconstexpr bool std::\27[01;32m\27[Koperator==\27[m\27[K(const optional<_Tp>&, nullopt_t) \27[35m\27[K[with _Tp = ControlData]\27[m\27[K\27[m\27[K', declared with attribute '\27[01m\27[Knodiscard\27[m\27[K' [\27[01;35m\27[K-Wunused-result\27[m\27[K]\
+  110 |             \27[01;35m\27[Kcontrol == std::nullopt\27[m\27[K;\
+      |             \27[01;35m\27[K~~~~~~~~^~~~~~~~~~~~~~~\27[m\27[K\
+In file included from \27[01m\27[Ksrc\\cukan_main.hpp:7\27[m\27[K:\
+\27[01m\27[KD:/msys64/ucrt64/include/c++/15.2.0/optional:1518:5:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kdeclared here\
+ 1518 |     \27[01;36m\27[Koperator\27[m\27[K==(const optional<_Tp>& __lhs, nullopt_t) noexcept\
+      |     \27[01;36m\27[K^~~~~~~~\27[m\27[K\
+At global scope:\
+\27[01m\27[Kcc1plus.exe:\27[m\27[K \27[01;36m\27[Knote: \27[m\27[Kunrecognized command-line option '\27[01m\27[K-Wno-gnu-line-marker\27[m\27[K' may have been intended to silence earlier diagnostics\
+"
+}

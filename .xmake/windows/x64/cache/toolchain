@@ -1,0 +1,66 @@
+{
+    clang_arch_x86_64_plat_msys = {
+        arch = "x86_64",
+        plat = "msys",
+        __global = true
+    },
+    tool_target_Culcan_msys_x86_64_cxx = {
+        toolchain_info = {
+            cachekey = "gcc_arch_x86_64_plat_msys",
+            arch = "x86_64",
+            name = "gcc",
+            plat = "msys"
+        },
+        toolname = "gxx",
+        program = [[D:\msys64\ucrt64\bin\g++.exe]]
+    },
+    gcc_arch_x86_64_plat_msys = {
+        plat = "msys",
+        arch = "x86_64",
+        __checked = {
+            name = "gcc",
+            program = [[D:\msys64\ucrt64\bin\gcc.exe]]
+        },
+        __global = true
+    },
+    cross_arch_x86_64_plat_msys = {
+        plat = "msys",
+        arch = "x86_64",
+        __checked = false,
+        __global = true
+    },
+    yasm_arch_x86_64_plat_msys = {
+        plat = "msys",
+        arch = "x86_64",
+        __checked = true,
+        __global = true
+    },
+    tool_target_Culcan_msys_x86_64_ld = {
+        toolchain_info = {
+            cachekey = "gcc_arch_x86_64_plat_msys",
+            arch = "x86_64",
+            name = "gcc",
+            plat = "msys"
+        },
+        toolname = "gxx",
+        program = [[D:\msys64\ucrt64\bin\g++.exe]]
+    },
+    gfortran_arch_x86_64_plat_msys = {
+        plat = "msys",
+        arch = "x86_64",
+        __checked = true,
+        __global = true
+    },
+    go_arch_x86_64_plat_msys = {
+        plat = "msys",
+        arch = "x86_64",
+        __checked = true,
+        __global = true
+    },
+    envs_arch_x86_64_plat_msys = {
+        plat = "msys",
+        arch = "x86_64",
+        __checked = true,
+        __global = true
+    }
+}
