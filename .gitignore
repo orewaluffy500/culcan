@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+# Other
+compile_commands.json
+
+# Builds
+/build/
+
+# XMake
+/.xmake/
+/.cache/

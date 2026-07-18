@@ -1,107 +1,31 @@
 #pragma once
 
 #include <string>
-#include <cstdlib>
-#include <string>
 #include <iostream>
-#include <optional>
-#include <map>
 #include <vector>
+
+#include "culcan_memory.hpp"
+#include "culcan_tmp_mem.hpp"
+#include "culcan_control.hpp"
 
 #define DO_LOG 0
 #define LOG(x) if (DO_LOG) std::cout << "LOG:: " << x << "\n";
 
 const int ERROR_VALUE = -1024;
 
-static std::map<char, char> CONTROL_SYMBOLS = {
-    {'(', ')'},
-    {'[', ']'}
-};
 
-
-struct IntegerStack {
-    int* memory;
-    int cursor = 0;
-    const size_t stackSize;
-    IntegerStack(size_t stackSize): stackSize(stackSize){
-        memory = (int*) calloc(stackSize, sizeof(int));
-    }
-
-    IntegerStack(): stackSize(0){}
-
-    ~IntegerStack(){
-        free(memory);
-    }
-
-    void setCursor(int x){
-        if (x < 0) cursor = 0;
-        else if (x >= stackSize) cursor = stackSize - 1;
-        else cursor = x;
-    }
-
-    int getCursorValue(){
-        return memory[cursor];
-    }
-
-    void backward() { setCursor(cursor - 1); }
-    void forward() { setCursor(cursor + 1); }
-
-    void setCursorValue(int v) { memory[cursor] = v; }
-};
-
-
-// COMPARISON BUFFER
-
-struct ComparisonBuffer {
-    std::optional<int> a;
-    std::optional<int> b;
-
-    ComparisonBuffer(int a, int b): a(a), b(b) {}
-    ComparisonBuffer(): a(std::nullopt), b(std::nullopt) {}
-
-    void reset(){
-        a = std::nullopt;
-        b = std::nullopt;
-    }
-
-    bool hasValue() { return a.has_value() && b.has_value(); }
-};
-
-
-// CONTROLS
-
-struct ControlData {
-    int startingPos;
-    char starter;
-    char ender;
-    bool active;
-
-    ControlData(int starting, char starter, bool skip): startingPos(starting), starter(starter), active(skip), ender(CONTROL_SYMBOLS[starter]){
-    }
-
-    ControlData(): startingPos(0), starter('.'), ender('.'), active(false){}
-};
-
-struct IfZeroControlData : ControlData {
-    IfZeroControlData(int starting, char starter, bool skip): ControlData(starting, starter, skip){}
-};
-
-
-
-
-
-struct CukanVM {
-    IntegerStack stack;
-    ComparisonBuffer comparisonBuffer;
+struct cc_CulcanVM {
+    cc_IntMemory stack;
+    cc_CompareBuffer comparisonBuffer;
     std::string code;
-    std::vector<ControlData> controlStack;
+    std::vector<cc_ControlData> controlStack;
 
-    CukanVM(std::string code): stack(128), code(code), comparisonBuffer(){}
+    cc_CulcanVM(std::string code): stack(128), code(code), comparisonBuffer(){}
 
 
     void execute(){
         int i = 0;
-        std::optional<ControlData> control = std::nullopt;
+        std::optional<cc_ControlData> control = std::nullopt;
 
         for (char c : code){
             if (!controlStack.empty()) control = getTopControl();
@@ -257,13 +181,13 @@ struct CukanVM {
     int getValue() { return stack.getCursorValue(); }
     void setValue(int v) { stack.setCursorValue(v); }
 
-    ControlData& getTopControl() { return controlStack.back(); }
+    cc_ControlData& getTopControl() { return controlStack.back(); }
     void popTopControl() { return controlStack.pop_back(); }
 
     bool checkControlSuffix(char suffix) { return !controlStack.empty() && getTopControl().ender == suffix; }
     bool doSkipControl() { return !controlStack.empty() && getTopControl().active; }
 
-    void pushControl(int start, char starter, bool skip) { controlStack.push_back(ControlData(start, starter, skip)); }
+    void pushControl(int start, char starter, bool skip) { controlStack.push_back(cc_ControlData(start, starter, skip)); }
 };
 
 
